@@ -53,8 +53,8 @@ This means the Spark binary already contains PySpark — we are not installing a
 ```
 ### 3. Install findspark
 
-Although the Spark binary already contains **PySpark**, Python needs to know where Spark is installed.
-We install **findspark** so Python can locate the Spark installation defined by **SPARK_HOME** and properly load the built-in PySpark module from the Spark distribution.
+Although the Spark binary already contains `PySpark`, Python needs to know where Spark is installed.
+We install `findspark` so Python can locate the Spark installation defined by `SPARK_HOME` and properly load the built-in PySpark module from the Spark distribution.
 
 ```python
 # Install findspark so Python can locate SPARK_HOME
