@@ -31,7 +31,7 @@ PySpark is the Python interface for Apache Spark, allowing scalable distributed 
 Spark requires **Java 8+, but Spark 3.5.x recommends Java 11**, so we install it manually.
 We also install pyspark and findspark so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
 
-```
+```python
 # Install Java 11 (required for Apache Spark)
 !apt-get update -qq
 !apt-get install -qq openjdk-11-jdk-headless
@@ -47,7 +47,7 @@ Although pip install pyspark includes a bundled Spark runtime, downloading the a
 - experiment with configuration files later
 - match the official Spark/Hadoop version numbers used in production systems
   
-```
+```python
 # Download and extract Spark 3.5.2 (Hadoop 3)
 !wget -q https://archive.apache.org/dist/spark/spark-3.5.2/spark-3.5.2-bin-hadoop3.tgz
 !tar xf spark-3.5.2-bin-hadoop3.tgz
@@ -56,7 +56,7 @@ Although pip install pyspark includes a bundled Spark runtime, downloading the a
 ### 3. Initialize Spark
 Now we create the **SparkSession**, which is the entry point to all Spark functionality. Every Spark program starts with a **SparkSession**. It connects the notebook to the Spark engine and allows creation of DataFrames, SQL queries, and distributed operations.
 
-```
+```python
 import findspark
 findspark.init()
 
@@ -73,7 +73,7 @@ spark
 Before continuing, confirm that Spark is installed and configured correctly.
 If anything failed during installation (Java mismatch, corrupted download, missing environment variables), this check will reveal it immediately.
 
-```
+```python
 import pyspark
 print("PySpark version:", pyspark.__version__)
 print("Spark master:", spark.sparkContext.master)
