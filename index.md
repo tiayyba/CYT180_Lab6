@@ -46,7 +46,7 @@ We will download the official precompiled binary distribution of: Apache Spark V
 ```
 ### 3. Install PySpark
 
-We will install **findspark** so Python can initialize Spark correctly. 
+We install **findspark** so Python can locate the Spark installation defined by SPARK_HOME.
 
 ```python
 # Install PySpark and findspark (version pinned for compatibility)
@@ -99,8 +99,10 @@ If anything failed during installation (Java mismatch, corrupted download, missi
 import pyspark
 print("PySpark version:", pyspark.__version__)
 print("Spark master:", spark.sparkContext.master)
+print("Default parallelism:", spark.sparkContext.defaultParallelism)
 print("Python version (driver):", spark.sparkContext.pythonVer)
 ```
+Notice that Spark runs in local[*] mode in Colab. This means Spark uses all available CPU cores in a single machine, not a real cluster.
 
 ----
 
