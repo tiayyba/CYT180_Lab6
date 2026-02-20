@@ -28,30 +28,29 @@ By the end of this lab, you will be able to:
 ## Section 1 — Getting Started
 PySpark is the Python interface for Apache Spark, allowing scalable distributed data processing. In this lab, we will run Spark inside Google Colab. PySpark requires a Java runtime, the Spark framework, and a Python interface layer. Google Colab does not include Spark by default, so in this section we prepare the environment so Spark can run inside the notebook.
 
-### 1. Install Java 11 and PySpark
+### 1. Install Java 11
 Spark requires **Java 8+, but Spark 3.5.x recommends Java 11**, so we install it manually.
-We will install **pyspark** and **findspark** so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
-
 ```python
 # Install Java 11 (required for Apache Spark)
 !apt-get update -qq
 !apt-get install -qq openjdk-11-jdk-headless
-
-# Install PySpark and findspark (version pinned for compatibility)
-!pip -q install pyspark==3.5.2 findspark
 ```
 
 ### 2. Download Spark 3.5.2 (Hadoop 3)
-Although pip install pyspark includes a bundled Spark runtime, downloading the actual Spark distribution allows you to:
-
-- explore Spark’s directory structure
-- experiment with configuration files later
-- match the official Spark/Hadoop version numbers used in production systems
+We will download the official precompiled binary distribution of: Apache Spark Version 3.5.2, built to work with Hadoop 3.
   
 ```python
 # Download and extract Spark 3.5.2 (Hadoop 3)
 !wget -q https://archive.apache.org/dist/spark/spark-3.5.2/spark-3.5.2-bin-hadoop3.tgz
 !tar xf spark-3.5.2-bin-hadoop3.tgz
+```
+### 3. Install PySpark
+
+We will install **pyspark** and **findspark** so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
+
+```python
+# Install PySpark and findspark (version pinned for compatibility)
+!pip -q install pyspark==3.5.2 findspark
 ```
 
 ### 3. Initialize Spark
