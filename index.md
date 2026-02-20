@@ -342,8 +342,6 @@ agg_cases.explain(mode="formatted")
 print("Number of rows in agg_cases:", agg_cases.count())
 ```
 
-### 1. Caching DataFrames: When and Why
-Caching stores a DataFrame in memory so repeated actions can run faster.
-Spark only caches after the first action triggers computation.
+----
 
-**Compare Performance: Cached vs. Uncached**
+
