@@ -307,3 +307,43 @@ df3.select("location", "date", "new_cases", "new_cases_7d_avg") \
 
 - Rows now include both the raw new_cases and a smoothed new_cases_7d_avg.
 - The first few dates for each location may show null if fewer than 7 days exist.
+
+### 3. Why Moving Averages Matter
+Daily case counts often fluctuate due to reporting delays, weekend effects, and batch updates.
+A 7‑day average:
+
+- reduces noise
+- reveals general trends
+- is widely used in epidemiology, finance, and operations analytics
+
+### 4. Review Questions
+- Modify the code to show the top 5 dates for Canada with the highest new_cases_7d_avg.
+- In one sentence, explain why moving averages are useful in time‑series analysis.
+
+
+----
+
+## Section 5 — Performance: Lazy Evaluation, Caching, and Partitions
+Spark is designed for distributed computing, and to achieve high performance it uses several key concepts:
+lazy evaluation, caching, and partitions.
+In this section, you will observe these behaviors directly by running timing experiments and inspecting execution plans.
+
+### 1. Lazy Evaluation: Understanding Spark's Execution Model
+Spark does not execute transformations immediately.
+Instead, it builds a logical plan describing what should be done. Execution only begins when an action is called. The following code prints Spark’s logical and physical execution plans. It does not run the computations.
+
+**View the Execution Plan (Does NOT run the job)**
+```python
+agg_cases.explain(mode="formatted")
+```
+**Trigger Execution With an Action**
+```python
+# count() is an action, so Spark executes the entire plan.
+print("Number of rows in agg_cases:", agg_cases.count())
+```
+
+### 1. Caching DataFrames: When and Why
+Caching stores a DataFrame in memory so repeated actions can run faster.
+Spark only caches after the first action triggers computation.
+
+**Compare Performance: Cached vs. Uncached**
