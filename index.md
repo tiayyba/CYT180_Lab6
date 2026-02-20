@@ -122,8 +122,125 @@ Spark performs these operations in parallel, which becomes extremely powerful on
 
 ### 3. Review Questions
 Record your answers for the following questions:
-- 1. What data types did Spark infer for each column? Check using printSchema().
+- What data types did Spark infer for each column? Check using printSchema().
 - Is describe() a transformation or an action? Why?
-- Add a new column called age_rough using:
-- age_rough = 2025 - year(to_date(dob))
-- and show the updated DataFrame.
+- Add a new column called age_rough using: `age_rough = 2025 - year(to_date(dob))` and show the updated DataFrame.
+
+----
+
+## Section 3 — Load a Real Dataset (OWID COVID‑19) and Explore
+In this section, you will load a real CSV dataset (Our World in Data COVID‑19) into a Spark DataFrame, inspect its schema, convert data types, and perform basic exploratory operations. This mirrors a typical workflow used in data analytics and data engineering: <br>
+**load → inspect → clean/convert → explore**
+
+### 1. Download and Load the Dataset
+We’ll download the CSV locally in Colab and let Spark load it from `/content`.
+`inferSchema=True` helps Spark detect numeric types automatically.
+
+```python
+import requests, pathlib
+
+url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
+local_path = pathlib.Path("/content/owid-covid-data.csv")
+
+if not local_path.exists():
+    r = requests.get(url, timeout=60)
+    r.raise_for_status()
+    local_path.write_bytes(r.content)
+
+df = spark.read.csv(str(local_path), header=True, inferSchema=True)
+
+print("Row count (may take a few seconds):", df.count())
+df.printSchema()
+```
+
+### 2. Convert the date Column Properly
+Even with inferSchema=True, date columns often load as strings in CSVs. We convert date to an actual date type so time‑based operations (like ordering, windows, and date math) work correctly.
+
+``` python
+from pyspark.sql import functions as F
+
+df2 = df.withColumn("date", F.to_date("date"))
+df2.select("location", "date", "new_cases", "new_deaths").show(5)
+df2.printSchema()
+```
+- withColumn creates a new date column cast to Spark’s date type.
+- Verifies the new type via printSchema() and shows a sample.
+
+### 3. Create an Analytical Subset
+In real data processing, analysts often create focused subsets of large datasets. Your task is to create a smaller analytical DataFrame that includes: 
+- Only these 5 countries:
+  - United States
+  - Canada
+  - India
+  - Brazil
+  - Italy
+- Only the most recent 120 days of data.
+- Then you will:
+  - Show the row count of your subset
+  - Display the first 10 rows
+ ```python
+# Step 1: Define the selected countries
+countries = ["United States", "Canada", "India", "Brazil", "Italy"]
+
+# Step 2: Filter for those locations
+df_subset = df2.filter(F.col("location").isin(countries))
+
+# Step 3: Determine the most recent date in this filtered data
+max_date = df_subset.agg(F.max("date")).first()[0]
+
+# Step 4: Keep only the last 120 days
+N = 120
+df_subset = df_subset.filter(F.col("date") >= F.date_sub(F.lit(max_date), N))
+
+# Step 5: Preview the subset
+print("Number of rows in subset:", df_subset.count())
+df_subset.select("location", "date", "new_cases", "new_deaths").show(10)
+```
+This task should help you learn:
+- How to apply multi-condition filtering using .isin()
+- How to compute an aggregated value (max(date))
+- How to use date arithmetic to define a time window
+- How transformations combine into a pipeline
+- How actions (count, show) trigger computation
+
+### 4. Filter and Order the Data
+Let’s answer a simple question: What are the latest records for the United States?
+```python
+(df2
+ .filter(F.col("location") == "United States")
+ .orderBy(F.desc("date"))
+ .select("location", "date", "new_cases", "new_deaths")
+ .show(10))
+```
+Here:
+- **filter** and **orderBy** are transformations (they build a plan).
+- **show()** is an action (it executes the plan).
+
+### 5. Aggregate: Total New Cases by Location
+Compute total new cases grouped by location.
+
+```python
+agg_cases = (df2
+    .groupBy("location")
+    .agg(F.sum("new_cases").alias("total_new_cases"))
+    .orderBy(F.desc("total_new_cases"))
+)
+
+agg_cases.show(10, truncate=False)
+```
+This step should help you learn:
+- Combining groupBy and agg for summary statistics.
+- show() triggers execution.
+- These patterns are essential for Spark SQL and analytics.
+
+### 3. Review Questions
+- What data types were inferred for date, location, and new_cases before and after conversion in setp 2?
+- Identify one transformation and one action from setp 4 and step 5.
+- Show the latest 10 records for Canada (modify step 4).
+- Modify step 5 to compute total new deaths by location.
+- In §step 3, what is the row count of your subset and what do the first 10 rows look like?
+- Why is creating analytical subsets useful when working with large datasets?
+
+----
+
+## Section 4 — Transformations, Actions, and a 7‑Day Moving Average
