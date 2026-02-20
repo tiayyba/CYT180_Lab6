@@ -37,19 +37,27 @@ Spark requires **Java 8+, but Spark 3.5.x recommends Java 11**, so we install it
 ```
 
 ### 2. Download Spark 3.5.2 (Hadoop 3)
-We will download the official precompiled binary distribution of: Apache Spark Version 3.5.2, built to work with Hadoop 3.
+We download the official precompiled binary distribution of Apache Spark version 3.5.2 (built for Hadoop 3).
+This Spark distribution includes:
+- The Spark engine (JVM-based execution framework)
+- Built-in libraries and JAR files
+- The bin/ scripts (spark-submit, spark-shell, etc.)
+- The PySpark module inside the /python/ directory
+
+This means the Spark binary already contains PySpark — we are not installing a separate Spark engine through pip.
   
 ```python
 # Download and extract Spark 3.5.2 (Hadoop 3)
 !wget -q https://archive.apache.org/dist/spark/spark-3.5.2/spark-3.5.2-bin-hadoop3.tgz
 !tar xf spark-3.5.2-bin-hadoop3.tgz
 ```
-### 3. Install PySpark
+### 3. Install findspark
 
-We install **findspark** so Python can locate the Spark installation defined by SPARK_HOME.
+Although the Spark binary already contains **PySpark**, Python needs to know where Spark is installed.
+We install **findspark** so Python can locate the Spark installation defined by **SPARK_HOME** and properly load the built-in PySpark module from the Spark distribution.
 
 ```python
-# Install PySpark and findspark (version pinned for compatibility)
+# Install findspark so Python can locate SPARK_HOME
 !pip -q install findspark
 ```
 
