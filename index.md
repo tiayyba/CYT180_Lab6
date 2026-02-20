@@ -233,14 +233,46 @@ This step should help you learn:
 - show() triggers execution.
 - These patterns are essential for Spark SQL and analytics.
 
-### 3. Review Questions
+### 6. Review Questions
 - What data types were inferred for date, location, and new_cases before and after conversion in setp 2?
 - Identify one transformation and one action from setp 4 and step 5.
 - Show the latest 10 records for Canada (modify step 4).
 - Modify step 5 to compute total new deaths by location.
-- In §step 3, what is the row count of your subset and what do the first 10 rows look like?
+- In step 3, what is the row count of your subset and what do the first 10 rows look like?
 - Why is creating analytical subsets useful when working with large datasets?
 
 ----
 
 ## Section 4 — Transformations, Actions, and a 7‑Day Moving Average
+In this section, you will deepen your understanding of how Spark processes data. Spark uses a lazy execution model, where transformations build up a computation plan and actions trigger execution. You will also compute a 7‑day moving average using Spark window functions — a common analytic technique when working with time‑series data.
+
+### 1. Transformations vs. Actions
+Let’s begin by reviewing the difference:
+- **Transformations** These define operations on a DataFrame but do not execute immediately. Examples: select, filter, orderBy, groupBy, withColumn.
+- **Actions**: These trigger execution and return a result. Examples: show, count, take, collect.
+Knowing the difference is essential for understanding performance, execution plans, and caching.
+
+### 2. Compute a 7‑Day Moving Average of New Cases
+Time‑series analysis often uses moving averages to smooth daily fluctuations.
+Here, you will calculate a 7‑day rolling average of `new_cases` for each country.
+
+- **Define a window specification**
+```python
+from pyspark.sql.window import Window
+
+w = Window.partitionBy("location").orderBy("date").rowsBetween(-6, 0)
+```
+- **Add the 7‑day average column**
+
+```python
+df3 = df2.withColumn("new_cases_7d_avg", F.avg("new_cases").over(w))
+
+df3.select("location", "date", "new_cases", "new_cases_7d_avg") \
+   .filter(F.col("location").isin("United States", "Canada")) \
+   .orderBy("location", "date") \
+   .show(12)
+```
+**What you should observe:**
+
+- Rows now include both the raw new_cases and a smoothed new_cases_7d_avg.
+- The first few dates for each location may show null if fewer than 7 days exist.
