@@ -23,7 +23,8 @@ By the end of this lab, you will be able to:
 - Explain the difference between transformations and actions.
 - Observe performance concepts: lazy evaluation, caching, and partitions.
 
-  ---
+----
+  
 ## Section 1 — Getting Started
 PySpark is the Python interface for Apache Spark, allowing scalable distributed data processing. In this lab, we will run Spark inside Google Colab. PySpark requires a Java runtime, the Spark framework, and a Python interface layer. Google Colab does not include Spark by default, so in this section we prepare the environment so Spark can run inside the notebook.
 
@@ -79,3 +80,50 @@ print("PySpark version:", pyspark.__version__)
 print("Spark master:", spark.sparkContext.master)
 print("Python version (driver):", spark.sparkContext.pythonVer)
 ```
+
+----
+
+## Section 2 — Creating a Simple DataFrame in PySpark
+In this section, you will create your first PySpark DataFrame directly in memory.
+This demonstrates how Spark structures data, infers schema, and provides basic descriptive statistics.
+Unlike pandas, which loads data directly into local memory, Spark stores data in a distributed format that allows scaling to much larger datasets.
+
+### 1. Creating an In-Memory DataFrame
+We can manually define rows and column names, then pass them to spark.createDataFrame().
+
+```python
+from pyspark.sql import functions as F
+
+data = [
+    ('John',  '', 'Smith', '2000-01-01', 'M', 100000),
+    ('Jane',  '', 'Smith', '1990-01-01', 'F', 150000),
+    ('Jonas', '', 'Smith', '1995-01-01', 'M', 120000),
+]
+
+columns = ["firstname", "middlename", "lastname", "dob", "gender", "salary"]
+
+df_small = spark.createDataFrame(data=data, schema=columns)
+
+df_small.show()
+df_small.printSchema()
+```
+The above example:
+- Creates a Spark DataFrame with six columns.
+- Prints the data in a table format.
+- Shows the inferred schema (Spark assigns types like string, bigint, etc.).
+
+### 2. Getting Summary Statistics
+Spark can quickly compute summary statistics across numeric columns:
+```python
+df_small.describe().show()
+```
+This provides the count, mean, standard deviation, min, and max for numeric columns (like salary).
+Spark performs these operations in parallel, which becomes extremely powerful on large datasets.
+
+### 3. Review Questions
+Record your answers for the following questions:
+- 1. What data types did Spark infer for each column? Check using printSchema().
+- Is describe() a transformation or an action? Why?
+- Add a new column called age_rough using:
+- age_rough = 2025 - year(to_date(dob))
+- and show the updated DataFrame.
