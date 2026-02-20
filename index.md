@@ -46,11 +46,11 @@ We will download the official precompiled binary distribution of: Apache Spark V
 ```
 ### 3. Install PySpark
 
-We will install **pyspark** and **findspark** so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
+We will install **findspark** so Python can initialize Spark correctly. 
 
 ```python
 # Install PySpark and findspark (version pinned for compatibility)
-!pip -q install pyspark==3.5.2 findspark
+!pip -q install findspark
 ```
 
 ### 4. Set Environment Variables
