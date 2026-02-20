@@ -96,7 +96,6 @@ If anything failed during installation (Java mismatch, corrupted download, missi
 import pyspark
 print("PySpark version:", pyspark.__version__)
 print("Spark master:", spark.sparkContext.master)
-print(spark.sparkContext.master)
 print("Python version (driver):", spark.sparkContext.pythonVer)
 ```
 
