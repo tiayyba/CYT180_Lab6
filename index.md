@@ -53,7 +53,25 @@ We will install **pyspark** and **findspark** so Python can initialize Spark cor
 !pip -q install pyspark==3.5.2 findspark
 ```
 
-### 4. Initialize Spark
+### 4. Set Environment Variables
+import os
+
+# Set JAVA_HOME to Java 11 path
+os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-11-openjdk-amd64"
+
+# Set SPARK_HOME to the folder you just extracted
+os.environ["SPARK_HOME"] = "/content/spark-3.5.2-bin-hadoop3"
+
+# Prepend Java bin to PATH
+os.environ["PATH"] = os.environ["JAVA_HOME"] + "/bin:" + os.environ["PATH"]
+
+# Optional: check versions
+!java -version
+!echo $SPARK_HOME
+```
+
+
+### 5. Initialize Spark
 Now we create the **SparkSession**, which is the entry point to all Spark functionality. Every Spark program starts with a **SparkSession**. It connects the notebook to the Spark engine and allows creation of DataFrames, SQL queries, and distributed operations.
 
 ```python
@@ -69,7 +87,7 @@ spark = SparkSession.builder \
 spark
 ```
 
-### 4. Verify Your Environment
+### 6. Verify Your Environment
 Before continuing, confirm that Spark is installed and configured correctly.
 If anything failed during installation (Java mismatch, corrupted download, missing environment variables), this check will reveal it immediately.
 
@@ -77,6 +95,7 @@ If anything failed during installation (Java mismatch, corrupted download, missi
 import pyspark
 print("PySpark version:", pyspark.__version__)
 print("Spark master:", spark.sparkContext.master)
+print(spark.sparkContext.master)
 print("Python version (driver):", spark.sparkContext.pythonVer)
 ```
 
