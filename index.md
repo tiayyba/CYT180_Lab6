@@ -54,6 +54,7 @@ We will install **pyspark** and **findspark** so Python can initialize Spark cor
 ```
 
 ### 4. Set Environment Variables
+```python
 import os
 
 # Set JAVA_HOME to Java 11 path
