@@ -27,7 +27,7 @@ By the end of this lab, you will be able to:
 ## Section 1 — Getting Started
 PySpark is the Python interface for Apache Spark, allowing scalable distributed data processing. In this lab, we will run Spark inside Google Colab. PySpark requires a Java runtime, the Spark framework, and a Python interface layer. Google Colab does not include Spark by default, so in this section we prepare the environment so Spark can run inside the notebook.
 
-### 1.Install Java 11 and PySpark
+### 1. Install Java 11 and PySpark
 Spark requires **Java 8+, but Spark 3.5.x recommends Java 11**, so we install it manually.
 We also install pyspark and findspark so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
 
