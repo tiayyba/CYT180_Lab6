@@ -53,7 +53,7 @@ We will install **pyspark** and **findspark** so Python can initialize Spark cor
 !pip -q install pyspark==3.5.2 findspark
 ```
 
-### 3. Initialize Spark
+### 4. Initialize Spark
 Now we create the **SparkSession**, which is the entry point to all Spark functionality. Every Spark program starts with a **SparkSession**. It connects the notebook to the Spark engine and allows creation of DataFrames, SQL queries, and distributed operations.
 
 ```python
