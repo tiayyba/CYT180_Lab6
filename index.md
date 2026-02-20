@@ -63,6 +63,9 @@ os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-11-openjdk-amd64"
 # Set SPARK_HOME to the folder you just extracted
 os.environ["SPARK_HOME"] = "/content/spark-3.5.2-bin-hadoop3"
 
+# Prepend Spark bin to PATH
+os.environ["PATH"] = os.environ["SPARK_HOME"] + "/bin:" + os.environ["PATH"]
+
 # Prepend Java bin to PATH
 os.environ["PATH"] = os.environ["JAVA_HOME"] + "/bin:" + os.environ["PATH"]
 
