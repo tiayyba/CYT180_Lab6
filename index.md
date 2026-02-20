@@ -185,7 +185,7 @@ df.printSchema()
 ```
 
 ### 2. Convert the date Column Properly
-Even with `inferSchema=True`, date columns often load as strings in CSVs. We convert date to an actual date type so time‑based operations (like ordering, windows, and date math) work correctly.
+Even with `inferSchema=True`, `date` columns is often load as strings in CSVs. We convert date to an actual date type so time‑based operations (like ordering, windows, and date math) work correctly.
 
 ``` python
 from pyspark.sql import functions as F
