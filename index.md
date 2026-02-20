@@ -194,7 +194,7 @@ df2 = df.withColumn("date", F.to_date("date"))
 df2.select("location", "date", "new_cases", "new_deaths").show(5)
 df2.printSchema()
 ```
-- withColumn creates a new date column cast to Spark’s date type.
+- `withColumn()` creates a new date column cast to Spark’s date type.
 - Verifies the new type via printSchema() and shows a sample.
 
 ### 3. Create an Analytical Subset
