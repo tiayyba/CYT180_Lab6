@@ -30,7 +30,7 @@ PySpark is the Python interface for Apache Spark, allowing scalable distributed 
 
 ### 1. Install Java 11 and PySpark
 Spark requires **Java 8+, but Spark 3.5.x recommends Java 11**, so we install it manually.
-We also install pyspark and findspark so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
+We will install **pyspark** and **findspark** so Python can initialize Spark correctly. **pyspark** provides the Python interface, and **findspark** allows Python to locate your Spark installation inside Colab
 
 ```python
 # Install Java 11 (required for Apache Spark)
