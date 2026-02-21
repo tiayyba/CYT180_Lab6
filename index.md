@@ -367,3 +367,4 @@ Your screenshots **must include** the following:
    - Include your answers directly beneath the relevant screenshot.
    - Answers should be short (1–2 sentences each)
 7. Work should be complete, well organized and professionally presented. Too small, blurry or containing irrelevant output in screenshots will lead a deduction in marks up to 100%
+8. Show current date/time and your unique username to prove the ownership of work.
