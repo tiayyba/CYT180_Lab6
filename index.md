@@ -323,12 +323,9 @@ A 7‑day average:
 
 ----
 
-## Section 5 — Performance: Lazy Evaluation, Caching, and Partitions
-Spark is designed for distributed computing, and to achieve high performance it uses several key concepts:
-lazy evaluation, caching, and partitions.
-In this section, you will observe these behaviors directly by running timing experiments and inspecting execution plans.
-
-### 1. Lazy Evaluation: Understanding Spark's Execution Model
+## Section 5 — Performance: Lazy Evaluation
+Spark is designed for distributed computing, and to achieve high performance it uses several key concepts one of which is lazy evaluation.
+In this section, you will observe these behaviors directly.
 Spark does not execute transformations immediately.
 Instead, it builds a logical plan describing what should be done. Execution only begins when an action is called. The following code prints Spark’s logical and physical execution plans. It does not run the computations.
 
