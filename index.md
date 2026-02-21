@@ -286,13 +286,13 @@ Knowing the difference is essential for understanding performance, execution pla
 Time‑series analysis often uses moving averages to smooth daily fluctuations.
 Here, you will calculate a 7‑day rolling average of `new_cases` for each country.
 
-- **Define a window specification**
+**Define a window specification**
 ```python
 from pyspark.sql.window import Window
 
 w = Window.partitionBy("location").orderBy("date").rowsBetween(-6, 0)
 ```
-- **Add the 7‑day average column**
+**Add the 7‑day average column**
 
 ```python
 df3 = df2.withColumn("new_cases_7d_avg", F.avg("new_cases").over(w))
