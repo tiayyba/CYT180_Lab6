@@ -6,7 +6,6 @@
 ----
 
 ## Introduction
-Introduction
 PySpark is the Python interface for Apache Spark, useful for distributed data processing and pipelines. Even on modest data, Spark’s DataFrame API and Spark SQL can make many data‑wrangling tasks shorter, clearer, and easier to maintain than pandas.
 
 Docs: <http://spark.apache.org/docs/latest/api/python/>
@@ -84,7 +83,7 @@ os.environ["PATH"] = os.environ["JAVA_HOME"] + "/bin:" + os.environ["PATH"]
 
 
 ### 5. Initialize Spark
-Now we create the **SparkSession**, which is the entry point to all Spark functionality. Every Spark program starts with a **SparkSession**. It connects the notebook to the Spark engine and allows creation of DataFrames, SQL queries, and distributed operations.
+Now we create the `SparkSession`, which is the entry point to all Spark functionality. Every Spark program starts with a `SparkSession`. It connects the notebook to the Spark engine and allows creation of DataFrames, SQL queries, and distributed operations.
 
 ```python
 import findspark
@@ -194,7 +193,7 @@ df2 = df.withColumn("date", F.to_date("date"))
 df2.select("location", "date", "new_cases", "new_deaths").show(5)
 df2.printSchema()
 ```
-- `withColumn()` creates a new date column cast to Spark’s date type.
+- `withColumn()` creates a new `date` column cast to Spark’s date type.
 - Verifies the new type via printSchema() and shows a sample.
 
 ### 3. Create an Analytical Subset
@@ -265,8 +264,8 @@ This step should help you learn:
 - These patterns are essential for Spark SQL and analytics.
 
 ### 6. Review Questions
-- What data types were inferred for date, location, and new_cases before and after conversion in setp 2?
-- Identify one transformation and one action from setp 4 and step 5.
+- What data types were inferred for date, location, and new_cases before and after conversion in step 2?
+- Identify one transformation and one action from step 4 and step 5.
 - Show the latest 10 records for Canada (modify step 4).
 - Modify step 5 to compute total new deaths by location.
 - In step 3, what is the row count of your subset and what do the first 10 rows look like?
