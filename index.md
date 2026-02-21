@@ -1,7 +1,7 @@
 # CYT180 — Lab 6: Getting Started with PySpark in Google Colab
 **Weight:** 3% <br>
 **Work Type:** Individual <br>
-**Submission Format:** 2 minutes 30 seconds video, see submission instructions.
+**Submission Format:** screenshots.
 
 ----
 
@@ -345,3 +345,29 @@ print("Number of rows in agg_cases:", agg_cases.count())
 ----
 
 
+## Submission Instructions
+
+Submit ** screenshots** that clearly show the work you completed in this lab. 
+Your screenshots **must include** the following:
+
+1. **Section 1:** Screenshot of Spark successfully initialized.
+2. **Section 2**
+  - Screenshot of df_small.describe().show()
+  - Screenshot showing your added column age_rough
+3. **Section 3**
+    - Screenshot of df2.printSchema() after converting the date.
+    - Screenshot of your subset row count
+    - Screenshot of your latest 10 records for Canada
+    - Screenshot of total new deaths by location
+
+4. **Section 4 :** Screenshot showing the Hadoop streaming command and job completion
+   - Screenshot of 7‑day moving average for the United States (first 12 rows)
+   - Screenshot of top 5 days for Canada by new_cases_7d_avg
+
+5. **Section 5 :**
+   - Screenshot of your execution plan (agg_cases.explain())
+   - Screenshot of the action execution (agg_cases.count() output)
+6. **Written Answers to Reflection Questions from each section**
+   - Include your answers directly beneath the relevant screenshot.
+   - Answers should be short (1–2 sentences each)
+7. Work should be complete, well organized and professionally presented. Too small, blurry or containing irrelevant output in screenshots will lead a deduction in marks up to 100%
