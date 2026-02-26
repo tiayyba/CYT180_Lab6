@@ -343,7 +343,7 @@ print("Number of rows in agg_cases:", agg_cases.count())
 
 ## Submission Instructions
 
-Submit ** screenshots** that clearly show the work you completed in this lab. 
+Submit **screenshots** that clearly show the work you completed in this lab. 
 Your screenshots **must include** the following:
 
 1. **Section 1:** Screenshot of Spark successfully initialized.
