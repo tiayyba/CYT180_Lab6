@@ -210,7 +210,7 @@ In real data processing, analysts often create focused subsets of large datasets
   - Display the first 10 rows
  
  ```python
-#Step 1: Define the selected countries
+# Step 1: Define the selected countries
 countries = ["United States", "Canada", "India", "Brazil", "Italy"]
 
 # Step 2: Filter for those locations
