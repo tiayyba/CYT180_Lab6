@@ -208,8 +208,9 @@ In real data processing, analysts often create focused subsets of large datasets
 - Then you will:
   - Show the row count of your subset
   - Display the first 10 rows
+ 
  ```python
-# Step 1: Define the selected countries
+#Step 1: Define the selected countries
 countries = ["United States", "Canada", "India", "Brazil", "Italy"]
 
 # Step 2: Filter for those locations
@@ -226,6 +227,7 @@ df_subset = df_subset.filter(F.col("date") >= F.date_sub(F.lit(max_date), N))
 print("Number of rows in subset:", df_subset.count())
 df_subset.select("location", "date", "new_cases", "new_deaths").show(10)
 ```
+
 This task should help you learn:
 - How to apply multi-condition filtering using .isin()
 - How to compute an aggregated value (max(date))
