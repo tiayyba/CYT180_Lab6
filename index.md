@@ -6,6 +6,12 @@
 ----
 
 ## Introduction
+
+Apache Spark is a high‑performance, open‑source distributed computing framework designed to process large‑scale data efficiently across clusters of machines. 
+Unlike traditional MapReduce systems, Spark accelerates computation through in‑memory processing, drastically reducing the overhead of reading and writing intermediate results to disk. This capability makes it particularly powerful for iterative workloads such as machine learning, real‑time stream processing, interactive SQL queries, and graph analytics. 
+Spark supports development in Scala, Python, Java, and R, making it accessible to a wide range of users. It also provides language‑specific implementations such as PySpark for Python and sparklyr for R, ensuring that data engineers, analysts, and researchers can leverage Spark using familiar tools. While languages like Python provide their own local data‑processing libraries (such as Pandas), Apache Spark extends these capabilities to distributed environments, enabling applications to scale from laptops to clusters handling petabytes of data.
+In this lab, you will explore Apache Spark’s core concepts, learn how distributed data processing works, and gain hands‑on experience using Spark to manipulate and analyze large datasets. This foundation will prepare you for more advanced topics, including machine learning pipelines, streaming data, and large‑scale analytics.
+
 PySpark is the Python interface for Apache Spark, useful for distributed data processing and pipelines. Even on modest data, Spark’s DataFrame API and Spark SQL can make many data‑wrangling tasks shorter, clearer, and easier to maintain than pandas.
 
 Docs: <http://spark.apache.org/docs/latest/api/python/>
