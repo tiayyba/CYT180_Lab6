@@ -173,7 +173,8 @@ In this section, you will load a real CSV dataset (Our World in Data COVID‑19)
 
 ### 1. Download and Load the Dataset
 We’ll download the CSV locally in Colab and let Spark load it from `/content`.
-`inferSchema=True` helps Spark detect numeric types automatically.
+
+The parameter `inferSchema=True` helps Spark detect numeric types automatically.
 
 ```python
 import requests, pathlib
