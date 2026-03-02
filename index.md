@@ -118,7 +118,7 @@ print("Spark master:", spark.sparkContext.master)
 print("Default parallelism:", spark.sparkContext.defaultParallelism)
 print("Python version (driver):", spark.sparkContext.pythonVer)
 ```
-Notice that Spark runs in local[*] mode in Colab. This means Spark uses all available CPU cores in a single machine, not a real cluster.
+Notice that Spark runs in local[*] mode in Colab. This means Spark uses all available CPU cores in a single machine, not a real cluster. There is no external cluster manager being used, Spark uses an internal built-in scheduler.
 
 ----
 
