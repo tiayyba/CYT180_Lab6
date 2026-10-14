@@ -8,7 +8,7 @@
 
 ##  Introduction
 
-In Lab 6, you installed Spark in Google Colab, created DataFrames, performed common transformations, ran basic Spark SQL, and computed a 7‑day moving average. That workflow focused on working with **one dataset at a time**.
+In Lab 5, you installed Spark in Google Colab, created DataFrames, performed common transformations, ran basic Spark SQL, and computed a 7‑day moving average. That workflow focused on working with **one dataset at a time**.
 
 In real Big Data engineering, a typical workflow involves **combining multiple datasets**, cleaning and standardizing them, computing meaningful metrics, and writing the results to efficient formats. These steps form the foundation of a simple ETL (Extract–Transform–Load) workflow.
 In this lab, you will practice three essential skills:
