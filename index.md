@@ -36,12 +36,7 @@ By the end of this lab, you will be able to:
 
 ---
 
-## Prerequisites
-
-- You will work in Google Colab.
-- You should be able to start a SparkSession (from Lab 5).
-
-### Setup — Install Spark
+## Setup — Install Spark
 
 Run this cell once each time you open a new Colab session. It installs PySpark from pip, which includes Spark itself, so there is no large download from the Apache website (that server is often very slow). It also makes sure Java is available, because Spark runs on Java. It usually takes less than a minute.
 
