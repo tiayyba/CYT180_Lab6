@@ -18,7 +18,7 @@ In real Big Data engineering, a typical workflow involves combining multiple dat
 
 You will mostly run provided code to observe Spark's behavior and complete one small task in most sections.
 
-**Every student works with their own set of countries.** Your set is chosen by the last digit of your student ID, so your numbers will be different from your classmates' numbers. Submissions with another student's numbers will receive 0.
+**Every student works with their own set of countries.** Your set is chosen by the last digit of your student ID, so your numbers will be different from your classmates' numbers. Submissions with another student's numbers will receive 0 and will be subject to academic integrity violation.
 
 ---
 
