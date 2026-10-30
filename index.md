@@ -1,7 +1,7 @@
 # CYT180 — Lab 6: Joins, Data Cleaning, and Writing Data with PySpark
 
-**Weight:** 3%
-**Work Type:** Individual
+**Weight:** 3%<br>
+**Work Type:** Individual<br>
 **Submission Format:** Your Colab notebook printed to PDF (see Submission Guidelines)
 
 ---
