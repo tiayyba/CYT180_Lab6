@@ -301,11 +301,11 @@ In this section, you will load a real cyber security dataset into Spark: **daily
 
 ### About the Data
 
-**Where it comes from.** Kaspersky, a security software company, runs a public *Cyberthreat Real-Time Map*. Its antivirus products report every attack they detect on their users' computers, and Kaspersky publishes daily statistics for each country. A researcher, Sufi (2024), collected these daily statistics into one dataset and published it for research (https://github.com/DrSufi/CyberData, MIT licence). I have prepared a smaller copy, `cyber_threats.csv` (about 3 MB), with 5 of the original 18 columns and everyday country names.
+Kaspersky, a security software company, runs a public *Cyberthreat Real-Time Map*. Its antivirus products report every attack they detect on their users' computers, and Kaspersky publishes daily statistics for each country. A researcher, Sufi (2024), collected these daily statistics into one dataset and published it for research (https://github.com/DrSufi/CyberData, MIT licence). I have prepared a smaller copy, `cyber_threats.csv` (about 3 MB), with 5 of the original 18 columns and everyday country names.
 
-**What one row means.** Each row is **one country on one day**. The data covers October 2022 to December 2023 for 225 countries (77,623 rows in total).
+Each row is **one country on one day**. The data covers October 2022 to December 2023 for 225 countries (77,623 rows in total).
 
-**What the numbers mean.** Each attack column is the **fraction of Kaspersky users in that country who had that type of attack detected on that day**. For example, `web_threat = 0.0129` on a day in Canada means 1.29% of Kaspersky users in Canada had a web threat blocked that day.
+Each attack column is the **fraction of Kaspersky users in that country who had that type of attack detected on that day**. For example, `web_threat = 0.0129` on a day in Canada means 1.29% of Kaspersky users in Canada had a web threat blocked that day.
 
 | Column | Meaning |
 |---|---|
