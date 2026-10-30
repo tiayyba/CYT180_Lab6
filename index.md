@@ -36,7 +36,12 @@ By the end of this lab, you will be able to:
 
 ---
 
-## Setup — Install Spark
+## Prerequisites
+
+- You will work in Google Colab.
+- You should be able to start a SparkSession (from Lab 5).
+
+### Setup — Install Spark
 
 Run this cell once each time you open a new Colab session. It installs PySpark from pip, which includes Spark itself, so there is no large download from the Apache website (that server is often very slow). It also makes sure Java is available, because Spark runs on Java. It usually takes less than a minute.
 
@@ -301,11 +306,11 @@ In this section, you will load a real cyber security dataset into Spark: **daily
 
 ### About the Data
 
-Kaspersky, a security software company, runs a public *Cyberthreat Real-Time Map*. Its antivirus products report every attack they detect on their users' computers, and Kaspersky publishes daily statistics for each country. A researcher, Sufi (2024), collected these daily statistics into one dataset and published it for research (https://github.com/DrSufi/CyberData, MIT licence). I have prepared a smaller copy, `cyber_threats.csv` (about 3 MB), with 5 of the original 18 columns and everyday country names.
+**Where it comes from.** Kaspersky, a security software company, runs a public *Cyberthreat Real-Time Map*. Its antivirus products report every attack they detect on their users' computers, and Kaspersky publishes daily statistics for each country. A researcher, Sufi (2024), collected these daily statistics into one dataset and published it for research (https://github.com/DrSufi/CyberData, MIT licence). Your instructor has prepared a smaller copy, `cyber_threats.csv` (about 3 MB), with 5 of the original 18 columns and everyday country names.
 
-Each row is **one country on one day**. The data covers October 2022 to December 2023 for 225 countries (77,623 rows in total).
+**What one row means.** Each row is **one country on one day**. The data covers October 2022 to December 2023 for 225 countries (77,623 rows in total).
 
-Each attack column is the **fraction of Kaspersky users in that country who had that type of attack detected on that day**. For example, `web_threat = 0.0129` on a day in Canada means 1.29% of Kaspersky users in Canada had a web threat blocked that day.
+**What the numbers mean.** Each attack column is the **fraction of Kaspersky users in that country who had that type of attack detected on that day**. For example, `web_threat = 0.0129` on a day in Canada means 1.29% of Kaspersky users in Canada had a web threat blocked that day.
 
 | Column | Meaning |
 |---|---|
@@ -513,7 +518,21 @@ df_clean.orderBy("country", "date").show(10, truncate=False)
 
 ## Section 6 — Spark SQL Joins and Aggregations
 
-In this section, you will practice joining and aggregating with Spark SQL. SQL gives you a declarative way to write the same logic you wrote with the DataFrame API.
+In this section, you will do the same kind of work as before (joins and summaries), but this time using **Spark SQL** instead of the DataFrame API.
+
+**Why do this again in SQL?** Spark gives you two ways to ask the same question:
+
+- the **DataFrame API** (Python code such as `df.join(...)`, `df.groupBy(...)`), which you used in Sections 1–5, and
+- **SQL** (queries such as `SELECT ... FROM ... JOIN ... GROUP BY ...`).
+
+Both run on the same Spark engine and give the same results. SQL is worth knowing because many analysts and security tools use it: SIEM search languages, Hive, Databricks and most databases are SQL or SQL-like. In your job you will often write SQL queries over large log tables.
+
+What you will do, step by step:
+
+1. **Create temp views** – give your DataFrames table names so SQL can use them.
+2. **LEFT JOIN in SQL** – repeat the employees/failed-logins left join from Section 1, so you can compare the SQL version with the DataFrame version.
+3. **Aggregate in SQL** – summarize your cleaned attack data per country (average and maximum).
+4. **Join + aggregate in one query** – join the raw attack data to the country lookup table and summarize per continent, all in a single SQL statement.
 
 ### 1. Create Temp Views
 
